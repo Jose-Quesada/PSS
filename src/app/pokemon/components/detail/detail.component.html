@@ -1,0 +1,18 @@
+  <div class="card">
+  <img [src]="pokemonDetails.sprites.front_default" alt="{{pokemonDetails.name}}"  class="card-img-top w-50 h-50 align-center" >
+  <div class="card-body">
+    <h5 class="card-title">{{ pokemonDetails.name | titlecase }}</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Altura: {{ pokemonDetails.height }}</li>
+      <li class="list-group-item">Peso: {{ pokemonDetails.weight }}</li>
+      <li class="list-group-item">Tipos:
+        <span *ngFor="let type of pokemonDetails.types">
+          {{ type.type.name | titlecase }}
+        </span></li>
+    </ul>
+    <button
+    (click)="onFavorite()"
+    class="btn btn-primary">Guardar en favoritos</button>
+  </div>
+  </div>
+

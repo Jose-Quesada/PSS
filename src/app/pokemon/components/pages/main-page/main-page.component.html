@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-4">
+      <h2 class="display-6" >Lista de Pokémon</h2>
+        <div class="form-group">
+          <label for="numeroPokemon">¿Cuántos pokemons desea mostrar?</label>
+          <select
+          (change)="searchPokemon()"
+          class="form-control" id="numeroPokemon" #numeroPokemon>
+            <option>0</option>
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+            <option>500</option>
+          </select>
+        </div>
+      <div class="mt-3">
+        <ul class="list-group">
+          <pokemon-item
+            *ngFor="let pokemon of pokemons"
+            [pokemonName]="pokemon.name"
+            (selectPokemon)="onSelectPokemon($event)"
+          ></pokemon-item>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <h2 class="display-6" >Detalle</h2>
+      <div *ngIf="pokemonDetails" class="card" >
+          <pokemon-detail
+          [pokemonDetails]="pokemonDetails"
+          (favoritePokemon)="onSaveFavoritePokemon($event)"
+          ></pokemon-detail>
+      </div>
+    </div>
+  <div class="col-md-6">
+    <div class="row">
+      <h2 class="display-6" >Favoritos</h2>
+        <pokemon-favorite
+        (onDeleteFavorite)="onDeleteFavorite($event)"
+        [pokemonFavorites]="onGetFavoritePokemon()"></pokemon-favorite>
+    </div>
+  </div>
+</div>
+
